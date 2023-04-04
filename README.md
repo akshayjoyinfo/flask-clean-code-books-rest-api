@@ -20,3 +20,13 @@
 
 https://www.youtube.com/watch?v=WFzRy8KVcrM
 https://github.com/CryceTruly/bookmarker-api
+
+
+Agent: http://127.0.0.1:5002/
+
+https://app.datadoghq.eu/
+
+
+
+
+

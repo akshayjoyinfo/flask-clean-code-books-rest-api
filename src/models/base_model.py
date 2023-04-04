@@ -18,6 +18,10 @@ class BaseModel(db.Model):
         return cls.query.all()
 
     @classmethod
+    def find_all_paginate(cls, page, per_page, **kwargs):
+        return cls.query.filter_by(**kwargs).paginate(page=page, per_page=per_page)
+
+    @classmethod
     def count_all(cls):
         return cls.query.count()
 

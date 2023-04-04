@@ -10,17 +10,16 @@ class UserModel(BaseModel):
     password = db.Column(db.Text(), nullable=False)
     status = db.Column(db.String(8), nullable=False)
     is_admin = db.Column(db.Boolean(), nullable=False)
-    bookmarks = db.relationship('Bookmark', backref="users")
+    bookmarks = db.relationship('BookmarkModel', backref="users")
 
     def __repr__(self):
         return f'User>>> {self.username}-{self.email}'
 
-    def __init__(self, name, password, email, phone=None, is_admin=False):
+    def __init__(self, username, password, email, is_admin=False):
         self.password = password
-        self.name = name
+        self.username = username
         self.email = email
         self.is_admin = is_admin
-        self.phone = phone
         self.status = 'active'
 
     @classmethod

@@ -1,4 +1,4 @@
-from random import random
+import random
 
 from src.models.base_model import BaseModel, db
 import string
@@ -23,7 +23,8 @@ class BookmarkModel(BaseModel):
 
     def generate_short_characters(self):
         characters = string.digits + string.ascii_letters
-        picked_characters = random(characters)
+        print(characters)
+        picked_characters = ''.join(random.choices(characters, k=3))
 
         link = self.query.filter_by(short_url=picked_characters).first()
 
