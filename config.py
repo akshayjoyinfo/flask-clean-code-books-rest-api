@@ -7,6 +7,7 @@ load_dotenv(dotenv_path)
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URI")
+print(SQLALCHEMY_DATABASE_URI)
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 LOG_TYPE = os.environ.get("LOG_TYPE")  # Default is a Stream handler

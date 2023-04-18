@@ -5,12 +5,12 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from src.models.base_model import db
 
-
 app = create_app()
 
 
 MODELS_DIRECTORY = "models"
 EXCLUDE_FILES = ["__init__.py"]
+
 
 
 def scan_models():
@@ -29,6 +29,7 @@ migrate = Migrate(app, db)
 
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
+
 
 if __name__ == '__main__':
     scan_models()
