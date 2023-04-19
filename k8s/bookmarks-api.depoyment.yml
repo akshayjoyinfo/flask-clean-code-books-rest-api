@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookmarks-api-deployment
+  labels:
+    app: bookmarks-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bookmarks-api
+  template:
+    metadata:
+      labels:
+        app: bookmarks-api
+    spec:
+      containers:
+        - name: bookmarks-api
+          image: flask-bookmarks:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8500
+          env:
+            - name: DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: bookmarks-api-secrets
+                  key: db_connection_uri
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bookmarks-api-service
+spec:
+  ports:
+  - port: 8400
+    protocol: TCP
+    targetPort: 8500
+  selector:
+    app: bookmarks-api
+  type: LoadBalancer

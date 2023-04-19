@@ -3,22 +3,7 @@ version: '3.8'
 services:
   web:
     build: .
-    command: python manage.py db upgrade
     ports:
       - 8400:8500
     environment:
-      - DATABASE_URI=postgresql://flask:hello_flask@db:5432/flaskbookmarks
-    depends_on:
-      - db
-  db:
-    image: postgres:13-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    environment:
-      - POSTGRES_USER=flask
-      - POSTGRES_PASSWORD=hello_flask
-      - POSTGRES_DB=flaskbookmarks
-
-volumes:
-  postgres_data:
+      - DATABASE_URI=postgresql://postgres:Password%40123@host.docker.internal:5432/bookmarks
