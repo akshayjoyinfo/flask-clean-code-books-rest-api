@@ -43,3 +43,8 @@ docker run  --name flask-api -p 8400:8500 flask-bookmarks
 
 
 kubectl apply -f k8s/
+
+kubectl apply -f k8s/bookmarks.namespace.yml
+kubectl apply -f k8s/
+
+kubectl delete -f k8s/

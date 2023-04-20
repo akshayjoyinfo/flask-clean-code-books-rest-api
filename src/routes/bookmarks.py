@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, current_app
 from flask_jwt_extended import jwt_required, create_access_token, create_refresh_token, get_jwt_identity
 import validators
+from flasgger import swag_from
 
 from src.constants.http_status_codes import HTTP_200_OK, HTTP_201_CREATED
 from src.models.bookmark import BookmarkModel
@@ -12,6 +13,7 @@ bookmarks = Blueprint("Bookmarks", __name__, url_prefix=API_PREFIX + BOOKMARKS_P
 
 @bookmarks.post("")
 @jwt_required()
+@swag_from('../docs/bookmarks/create.yaml')
 def create_bookmark():
     current_user = get_jwt_identity()
 
